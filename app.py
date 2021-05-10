@@ -16,8 +16,11 @@ def index():
         details = request.form
         firstName = details['fname']
         lastName = details['lname']
+        favkpop = details['fkpop']
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO MyUsers(firstName, lastName) VALUES (%s, %s)", (firstName, lastName))
+        cur.execute("INSERT INTO Mykop(favkpop) VALUES (%s)", (favkpop))
+
         mysql.connection.commit()
         cur.close()
         return 'success'
